@@ -12,6 +12,7 @@
 # Init apt cache and upgrade all
 echo "Update packages"
 sudo apt update -y > /dev/null
+echo "Upgrade packages"
 sudo apt upgrade -y > /dev/null
 
 ####
@@ -24,6 +25,9 @@ sudo apt install openssh-server -y > /dev/null
 echo "Stasrt SSH"
 sudo `which sshd` > /dev/null # start server
 
+echo "add credencials for $USER"
+ssh-add "/home/$USER/.ssh/id_ivan"
+
 ####
 # Disk management
 echo "Install parted"
@@ -35,7 +39,7 @@ sudo apt install parted -y > /dev/null
 echo "Lauch and configure parted"
 sudo umount -a
 sudo cp $SERVER_CONF_PATH/etc/fstab /etc/
-sudo mount -a
+sudo mount -av
 
 ####
 # Samba
@@ -58,8 +62,21 @@ sudo smbpasswd -a $USER
 
 ####
 # applications
+
+####
+# git
+echo "Install git"
 sudo apt install git -y
 
 ####
-# Samba
-echo "Installation done"
+# snap
+echo "Install snap"
+sudo apt install snapd -y
+sudo service snapd start
+
+####
+# chromium
+echo "Install chromium"
+snap install chromium
+
+
