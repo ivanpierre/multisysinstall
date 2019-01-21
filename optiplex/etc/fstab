@@ -7,7 +7,7 @@
 # <file system> <mount point>   <type>  <options>       <dump>  <pass>
 
 # Initial disk install
-UUID=bf084bcb-6ce2-4354-b178-af7eda213ce6	  /	                      ext4	  errors=remount-ro	                                0	1
+UUID={UUID}	  /	                      ext4	  errors=remount-ro	                                0	1
 /swapfile	                                  none	                  swap	  sw	                                              0	0
 
 # All external disks
