@@ -38,7 +38,11 @@ sudo apt install parted -y > /dev/null
 # config and mount disks
 echo "Lauch and configure parted"
 sudo umount -a
-sudo cp $SERVER_CONF_PATH/etc/fstab /etc/
+
+# define UUID of /
+UUID=`df -P / | tail -1 | cut -d' ' -f 1`
+UUID=`blkid -s UUID -o value $UUID`
+sudo sed "s/{UUID}/$UUID/g" <$SERVER_CONF_PATH/etc/fstab >/etc/fstab
 sudo mount -av
 
 ####
