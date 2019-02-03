@@ -42,7 +42,8 @@ sudo umount -a
 # define UUID of /
 UUID=`df -P / | tail -1 | cut -d' ' -f 1`
 UUID=`blkid -s UUID -o value $UUID`
-sudo sed "s/{UUID}/$UUID/g" <$SERVER_CONF_PATH/etc/fstab >/etc/fstab
+sudo sed "s/{UUID}/$UUID/g" <$SERVER_CONF_PATH/etc/fstab >$SERVER_CONF_PATH/etc/fstab.new
+sudo cp $SERVER_CONF_PATH/etc/fstab.new /etc/fstab 
 sudo mount -av
 
 ####
