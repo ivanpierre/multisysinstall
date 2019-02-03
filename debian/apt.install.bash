@@ -37,13 +37,17 @@ sudo apt install parted -y > /dev/null
 ####
 # config and mount disks
 echo "Lauch and configure parted"
+# Unmount all external disks
 sudo umount -a
-
-# define UUID of /
+# get disk of /
 UUID=`df -P / | tail -1 | cut -d' ' -f 1`
+# get UUID of disk
 UUID=`blkid -s UUID -o value $UUID`
+# create new fstab
 sudo sed "s/{UUID}/$UUID/g" <$SERVER_CONF_PATH/etc/fstab >$SERVER_CONF_PATH/etc/fstab.new
-sudo cp $SERVER_CONF_PATH/etc/fstab.new /etc/fstab 
+# copy in root file system config
+sudo cp $SERVER_CONF_PATH/etc/fstab.new /etc/fstab
+# Remount all external disks 
 sudo mount -av
 
 ####
