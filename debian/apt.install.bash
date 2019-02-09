@@ -108,6 +108,3 @@ snap install vlc
 echo "Install vscode"
 snap install --classic vscode
 
-
-
-
