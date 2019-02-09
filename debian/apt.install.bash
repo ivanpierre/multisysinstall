@@ -78,6 +78,16 @@ echo "Install git"
 sudo apt install git -y
 
 ####
+# transmission
+echo "Install transmission"
+sudo apt install transmission
+
+####
+# multisystem
+echo "Install multisystem"
+sudo apt install multisystem
+
+####
 # snap
 echo "Install snap"
 sudo apt install snapd -y
@@ -87,5 +97,17 @@ sudo service snapd start
 # chromium
 echo "Install chromium"
 snap install chromium
+
+####
+# VLC
+echo "Install VLC"
+snap install vlc
+
+####
+# vscode
+echo "Install vscode"
+snap install --classic vscode
+
+
 
 
