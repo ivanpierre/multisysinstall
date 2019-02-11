@@ -8,6 +8,26 @@
 # main variables used
 # SERVER_CONF_PATH="optiplex" # from install.bash
 
+#############################################################
+# Functions
+inst_apt()
+{
+	if [[ $# -neq 1 ]]; then
+		echo "inst_apt: package expected" >&2
+		return 1
+	fi
+
+    echo inst_apt: installing $1
+    sudo apt install $1 -y > /dev/null 2> /dev/null
+
+    local err=$?
+    [[$err]] && echo "inst_apt: Installation error on $1" >&2
+    exit err
+}
+
+#############################################################
+# Entry point
+
 ####
 # Init apt cache and upgrade all
 echo "Update packages"
@@ -17,8 +37,7 @@ sudo apt upgrade -y > /dev/null
 
 ####
 # SSH
-echo "Install open-ssh"
-sudo apt install openssh-server -y > /dev/null
+inst_apt openssh-server
 
 ####
 # Lauch SSH server
@@ -30,9 +49,8 @@ ssh-add "/home/$USER/.ssh/id_ivan"
 
 ####
 # Disk management
-echo "Install parted"
-sudo apt install gparted -y > /dev/null
-sudo apt install parted -y > /dev/null
+inst_apt gparted
+inst_apt parted
 
 ####
 # config and mount disks
@@ -52,16 +70,14 @@ sudo mount -av
 
 ####
 # Samba
-echo "Install Samba"
-sudo apt install samba -y > /dev/null
-sudo apt install smbclient -y > /dev/null
+inst_apt samba
+inst_apt smbclient
 
 ####
 # Configure and launch Samba server
 echo "Lauch and configure samba"
 sudo service smbd stop
-sudo cp $SERVER_CONF_PATH/etc/samba/smb.conf /etc/samba/
-sudo cp -r $SERVER_CONF_PATH/var/lib/samba/usershares/* /var/lib/samba/usershares
+sudo cp -r $SERVER_CONF_PATH/etc/samba/* /etc/samba/
 sudo service smbd restart
 
 ####
@@ -69,28 +85,30 @@ sudo service smbd restart
 echo "Mot de passe du compte $USER pour samba"
 sudo smbpasswd -a $USER
 
-####
+################################################
+# utilitaires
+inst_apt procps     # for pgrep
+inst_apt ghex       # hex editor
+
+################################################
 # applications
 
 ####
 # git
-echo "Install git"
-sudo apt install git -y
+inst_apt git
 
 ####
 # transmission
-echo "Install transmission"
-sudo apt install transmission
+inst_apt transmission
 
 ####
 # multisystem
-echo "Install multisystem"
-sudo apt install multisystem
+inst_apt multisystem
 
 ####
 # snap
-echo "Install snap"
-sudo apt install snapd -y
+inst_apt snapd
+
 sudo service snapd start
 
 ####
@@ -109,10 +127,33 @@ echo "Install vscode"
 snap install --classic vscode
 
 ####
+# graphical environment (X11)
+inst_apt xorg
+inst_apt xinit
+
+inst_apt xserver-xorg
+inst_apt xserver-xorg-video-intel
+
+inst_apt fonts-noto-color-emoji
+inst_apt fonts-noto-hinted
+inst_apt fonts-noto-mono
+inst_apt fonts-noto-unhinted
+inst_apt fonts-freefont-ttf
+inst_apt fonts-dejavu-core
+inst_apt fonts-dejavu-extra
+inst_apt yelp
+
+####
 # i3 (debian repository)
-/usr/lib/apt/apt-helper download-file http://debian.sur5r.net/i3/pool/main/s/sur5r-keyring/sur5r-keyring_2019.02.01_all.deb \
- keyring.deb SHA256:176af52de1a976f103f9809920d80d02411ac5e763f695327de9fa6aff23f416
-sudo dpkg -i ./keyring.deb
-sudo bash -c 'echo "deb http://debian.sur5r.net/i3/ $(grep '^DISTRIB_CODENAME=' /etc/lsb-release | cut -f2 -d=) universe" >> /etc/apt/sources.list.d/sur5r-i3.list'
-sudo apt update
-sudo apt install i3
+inst_apt i3
+inst_apt i3lock 
+inst_apt suckless-tools 
+inst_apt i3status 
+inst_apt dunst
+inst_apt i3-gaps
+inst_apt rxvt-unicode
+inst_apt dmenu
+inst_apt apparmor-profiles-extra
+inst_apt dwm 
+inst_apt stterm 
+inst_apt surf
