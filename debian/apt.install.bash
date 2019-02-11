@@ -10,19 +10,21 @@
 
 #############################################################
 # Functions
-inst_apt()
-{
-	if [[ $# -neq 1 ]]; then
-		echo "inst_apt: package expected" >&2
-		return 1
+inst_apt() {
+	if [ $# -ne 1 ]; then
+		echo "inst_apt: package expected" 
+		return
 	fi
 
-    echo inst_apt: installing $1
-    sudo apt install $1 -y > /dev/null 2> /dev/null
+    echo "inst_apt: installing $1"
+    sudo apt install $1 -y > /dev/null 2>&1
 
     local err=$?
-    [[$err]] && echo "inst_apt: Installation error on $1" >&2
-    exit err
+    if [ $err -ne 0 ]; then
+        echo "inst_apt: Installation error on $1" 
+    fi
+
+    return
 }
 
 #############################################################
@@ -31,9 +33,9 @@ inst_apt()
 ####
 # Init apt cache and upgrade all
 echo "Update packages"
-sudo apt update -y > /dev/null
+sudo apt update -y > /dev/null 2>&1
 echo "Upgrade packages"
-sudo apt upgrade -y > /dev/null
+sudo apt upgrade -y > /dev/null 2>&1
 
 ####
 # SSH
@@ -114,17 +116,17 @@ sudo service snapd start
 ####
 # chromium
 echo "Install chromium"
-snap install chromium
+sudo snap install chromium
 
 ####
 # VLC
 echo "Install VLC"
-snap install vlc
+sudo snap install vlc
 
 ####
 # vscode
 echo "Install vscode"
-snap install --classic vscode
+sudo snap install --classic vscode
 
 ####
 # graphical environment (X11)
@@ -150,7 +152,7 @@ inst_apt i3lock
 inst_apt suckless-tools 
 inst_apt i3status 
 inst_apt dunst
-inst_apt i3-gaps
+# inst_apt i3-gaps
 inst_apt rxvt-unicode
 inst_apt dmenu
 inst_apt apparmor-profiles-extra

@@ -18,6 +18,3 @@ FLAVOUR_CONF_PATH="debian"
 #####
 # That's all for now
 echo "fin de l'installation"
-pause
-
-
