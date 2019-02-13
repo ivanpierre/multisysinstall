@@ -10,11 +10,13 @@
 # Set main variables
 SERVER_CONF_PATH="optiplex"
 FLAVOUR_CONF_PATH="debian"
+export PATH=$PATH:$FLAVOUR_CONF_PATH
 
 #####
 # Source install file
-. ./$FLAVOUR_CONF_PATH/apt.install.bash
+. apt.install.bash
 
 #####
 # That's all for now
 echo "fin de l'installation"
+nohup

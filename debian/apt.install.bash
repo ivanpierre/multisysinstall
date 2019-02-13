@@ -24,21 +24,46 @@ test_col () {
 done
 }
 
-echo_err() {
-    echo -e "\e[1;31m$1\e[0m"
+export BLACK=30
+export RED=31
+export GREEN=32
+export YELLOW=33
+export BLUE=34
+export MAGENTA=35
+export CYAN=36
+export LIGHTGRAY=37
+export LIGHT=60
+export BACKGROUND=10
+export BRIGHT=1
+export DIM=2
+export UNDERLINE=4
+export BLINK=5
+export REVERSE=7
+export HIDDEN=8
+
+echo_err() { # red background
+    echo -e "\e[${REVERSE};${RED}m$1\e[0m"
 }
 
-echo_ok() {
-    echo -e "\e[1;32m$1\e[0m"
+echo_ok() { # green 
+    echo -e "\e[${BRIGHT};${GREEN}m$1\e[0m"
+}
+
+echo_start() { # blue start red
+    echo -e "\e[${BRIGHT};${GREEN}m$1\e[${BRIGHT};${RED}m"
+}
+
+echo_stop() { # back to normal
+    echo -e "\e[0m"
 }
 
 inst_apt() {
-	if [ $# -ne 1 ]; then
+	if [ $# -lt 1 ]; then
 		echo_err "inst_apt: package expected" 
 		return
 	fi
 
-    sudo apt install $1 -y > tmp.txt 2> tmperr.txt 
+    sudo apt install $* -y > tmp.txt 2> tmperr.txt 
     local err=$?
     if [ $err -eq 0 ]; then
         echo_ok "installing $1"
@@ -68,12 +93,13 @@ inst_apt openssh-server
 
 ####
 # Lauch SSH server
-echo "Start SSH"
+echo_start "Start SSH"
 sudo `which sshd` > /dev/null # start server
-echo
-echo "add credencials for $USER"
+echo_stop
+
+echo_start "add credencials for $USER"
 ssh-add "/home/$USER/.ssh/id_ivan"
-echo 
+echo_stop
 
 ####
 # Disk management
@@ -82,10 +108,12 @@ inst_apt parted
 
 ####
 # config and mount disks
-echo "Lauch and configure parted"
 # Unmount all external disks
+echo "Unmount all disks"
 sudo umount -av
 echo
+
+echo_start "create parted disk data"
 # get disk of /
 UUID=`df -P / | tail -1 | cut -d' ' -f 1`
 # get UUID of disk
@@ -94,7 +122,10 @@ UUID=`blkid -s UUID -o value $UUID`
 sudo sed "s/{UUID}/$UUID/g" <$SERVER_CONF_PATH/etc/fstab >$SERVER_CONF_PATH/etc/fstab.new
 # copy in root file system config
 sudo cp $SERVER_CONF_PATH/etc/fstab.new /etc/fstab
-# Remount all external disks 
+echo_stop
+
+# Remount all external disks
+echo "Remount all disks" 
 sudo mount -av
 echo
 
@@ -105,17 +136,23 @@ inst_apt smbclient
 
 ####
 # Configure and launch Samba server
-echo "Lauch and configure samba"
+echo "Stop all samba services"
 sudo service smbd stop
+echo 
+
+echo_start "copy configuration"
 sudo cp -r $SERVER_CONF_PATH/etc/samba/* /etc/samba/
+echo_stop
+
+echo "Start all samba services"
 sudo service smbd restart
 echo 
 
 ####
 # Ajoute l'accès a samba pour l'utilisateur
-echo "Mot de passe du compte $USER pour samba"
+echo_start "Mot de passe du compte $USER pour samba"
 sudo smbpasswd -a $USER
-echo 
+echo_stop
 
 ################################################
 # utilitaires
@@ -141,8 +178,10 @@ inst_apt multisystem
 # snap
 inst_apt snapd
 
+# lauch service
+echo_start "Launch snapd service"
 sudo service snapd start
-echo 
+echo_stop
 
 ####
 # chromium
@@ -156,42 +195,21 @@ echo "Install VLC"
 sudo snap install vlc
 echo
 
-
 ####
 # vscode
 echo "Install vscode"
 sudo snap install --classic vscode
 echo
 
-
 ####
 # graphical environment (X11)
-inst_apt xorg
-inst_apt xinit
-
-inst_apt xserver-xorg
-inst_apt xserver-xorg-video-intel
-
-inst_apt fonts-noto-color-emoji
-inst_apt fonts-noto-hinted
-inst_apt fonts-noto-mono
-inst_apt fonts-noto-unhinted
-inst_apt fonts-freefont-ttf
-inst_apt fonts-dejavu-core
-inst_apt fonts-dejavu-extra
-inst_apt yelp
+echo "Install X11"
+. x11.bash
+echo
 
 ####
 # i3 (debian repository)
-inst_apt i3
-inst_apt i3lock 
-inst_apt suckless-tools 
-inst_apt i3status 
-inst_apt dunst
-# inst_apt i3-gaps
-inst_apt rxvt-unicode
-inst_apt dmenu
-inst_apt apparmor-profiles-extra
-inst_apt dwm 
-inst_apt stterm 
-inst_apt surf
+echo "Install i3"
+. i3-gaps.bash
+echo
+
