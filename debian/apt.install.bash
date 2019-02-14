@@ -213,3 +213,11 @@ echo "Install i3"
 . i3-gaps.bash
 echo
 
+####
+# grub-customizer
+echo "Install grub-customizer"
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer
+sudo apt-get update
+inst_apt grub-customizer
+echo
+
