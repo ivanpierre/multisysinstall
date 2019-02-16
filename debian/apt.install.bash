@@ -156,3 +156,10 @@ echo
 ####
 # tasksel (get complementary packages)
 inst_apt tasksel
+
+####
+# tasksel (debian repository)
+echo "Install tasksel packages"
+. tasksel.bash
+echo
+
