@@ -17,6 +17,5 @@ export PATH=$PATH:$FLAVOUR_CONF_PATH
 . apt.install.bash
 
 #####
-# That's all for now
+# That's all folks
 echo "fin de l'installation"
-nohup

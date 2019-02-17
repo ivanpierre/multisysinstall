@@ -101,6 +101,7 @@ inst_apt transmission
 
 ####
 # multisystem
+inst_apt gedit                  # To be able to edit config files
 inst_apt multisystem
 
 ####
@@ -115,21 +116,21 @@ echo_stop
 ####
 # chromium
 echo "Install chromium"
-sudo snap remove chromium
+# sudo snap remove chromium
 sudo snap install chromium
 echo
 
 ####
 # VLC
 echo "Install VLC"
-sudo snap remove vlc
+# sudo snap remove vlc
 sudo snap install vlc
 echo
 
 ####
 # vscode
 echo "Install vscode"
-sudo snap remove vscode
+# sudo snap remove vscode
 sudo snap install --classic vscode
 echo
 
@@ -154,11 +155,11 @@ inst_apt grub-customizer
 echo
 
 ####
-# tasksel (get complementary packages)
-inst_apt tasksel
-
-####
 # tasksel (debian repository)
+echo We are currently at `pwd`
+echo Path is $PATH
+echo
+
 echo "Install tasksel packages"
 . tasksel.bash
 echo
