@@ -67,12 +67,13 @@ inst_apt() {
     local err=$?
     if [ $err -eq 0 ]; then
         echo_ok "installing $1"
-        # echo_ok "$(tail -n 1 tmp.txt)"
+        echo_ok "$(tail -n 1 tmp.txt)"
     else
         echo_err "inst_apt: Installation error on $1"
         echo_err "$(tail -n 1 tmperr.txt)"
     fi
 
+    echo 
     return
 }
 
@@ -100,11 +101,6 @@ inst_apt git
 inst_apt transmission
 
 ####
-# multisystem
-inst_apt gedit                  # To be able to edit config files
-inst_apt multisystem
-
-####
 # snap
 inst_apt snapd
 
@@ -115,52 +111,39 @@ echo_stop
 
 ####
 # chromium
-echo "Install chromium"
-# sudo snap remove chromium
-sudo snap install chromium
-echo
+sudo snap install chromium > /dev/null
 
 ####
 # VLC
-echo "Install VLC"
 # sudo snap remove vlc
-sudo snap install vlc
-echo
+sudo snap install vlc > /dev/null
 
 ####
 # vscode
 echo "Install vscode"
 # sudo snap remove vscode
-sudo snap install --classic vscode
-echo
-
-####
-# graphical environment (X11)
-echo "Install X11"
-. x11.bash
-echo
-
-####
-# i3 (debian repository)
-echo "Install i3"
-. i3.bash
-echo
+sudo snap install --classic vscode > /dev/null
 
 ####
 # grub-customizer
-echo "Install grub-customizer"
-sudo add-apt-repository ppa:danielrichter2007/grub-customizer
-sudo apt update
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer > /dev/null
+sudo apt update > /dev/null
 inst_apt grub-customizer
-echo
+
+####
+# graphical environment (X11)
+. x11.bash
+
+####
+# i3 (debian repository)
+. i3.bash
 
 ####
 # tasksel (debian repository)
-echo We are currently at `pwd`
-echo Path is $PATH
-echo
-
-echo "Install tasksel packages"
 . tasksel.bash
-echo
+
+####
+# multisystem
+inst_apt gedit                  # To be able to edit config files
+bash install-depot-multisystem.sh 
 
