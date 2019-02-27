@@ -1,0 +1,242 @@
+Task: debian-multimedia
+Relevance: 7
+Section: debian-multimedia
+Description: Debian Multimedia Pure Blend
+ .
+
+Task: multimedia-ambisonics
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for working with ambisonics (3D surround sound)
+ This metapackage will install packages you need when working with
+ ambisonics.
+Key: 
+ multimedia-ambisonics
+
+Task: multimedia-animation
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for creating animations
+ This metapackage will install packages for designed to create and view
+ 2D and 3D animations for concerts, theatre and dance performances,
+ feature films and promotional screenings.
+Key: 
+ multimedia-animation
+
+Task: multimedia-audio-plugins
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Audio processing plugins, synths and virtual instruments
+ This metapackage installs plugins that are useful for creating and
+ processing audio.
+Key: 
+ multimedia-audio-plugins
+
+Task: multimedia-audio-utilities
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: packages for manipulating & cataloging music and audio
+ This metapackage installs programs and plugins for manipulating &
+ cataloging music and audio. This includes stretching audio in time, 
+ breaking it into segments, the detection of pitch, beat and silence,
+ and transcoding between file formats. It also includes tools to assist
+ maintaining music collections by detecting duplicates, tagging metadata
+ and dealing with cover art and album information.
+Key: 
+ multimedia-audio-utilities
+
+Task: multimedia-broadcasting
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for broadcasting media publicly or in the home
+ Metapackage which installs packages for broadcasters, cinemas, or home
+ users (e.g. streaming & media servers).
+Key: 
+ multimedia-broadcasting
+
+Task: multimedia-csound
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for working with Csound
+ Metapackage which installs packages, libraries, extensions and plug-ins to work
+ with Csound, the grand old audio programming language.
+Key: 
+ multimedia-csound
+
+Task: multimedia-devel
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Extra packages for developers and package compiling
+ This metapackage will install additional software to compile audio
+ software.
+Key: 
+ multimedia-devel
+
+Task: multimedia-djing
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for Disk Jockeys
+ This metapackage will install packages for djing
+Key: 
+ multimedia-djing
+
+Task: multimedia-drums
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for drums & beats
+ Metapackage which installs packages for making drums and beats.
+Key: 
+ multimedia-drums
+
+Task: multimedia-firewire
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for your firewire audiocard / interface
+ This metapackage will install packages to configure your ffado
+ supported firewire audio card.
+Key: 
+ multimedia-firewire
+
+Task: multimedia-graphics
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for making and editing artwork
+ This metapackage will install packages for making and editing artwork.
+Key: 
+ multimedia-graphics
+
+Task: multimedia-guitar
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for playing with your (virtual) guitar gear
+ Packages which might be useful when playing guitar, adding guitar effects
+ to your audio streams and / or editing notation and tablature for your
+ guitar music.
+Key: 
+ multimedia-guitar
+
+Task: multimedia-jack
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: JACK (Jack Audio Connection Kit) and ALSA related packages
+ This metapackage will install pro audio JACK (Jack Audio Connection Kit)
+ and ALSA related packages.
+Key: 
+ multimedia-jack
+
+Task: multimedia-ladi
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: LADI, Linuxaudio session management, packages
+ This metapackage will install packages for ladish.org.
+Key: 
+ multimedia-ladi
+
+Task: multimedia-looping
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for looping music and audio
+ Metapackage which installs packages with the aim to loop your audio
+ (and midi).
+Key: 
+ multimedia-looping
+
+Task: multimedia-midi
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: MIDI related packages
+ This metapackage will install packages useful for MIDI, including trackers,
+ MIDI synths and virtual keyboards.
+Key: 
+ multimedia-midi
+
+Task: multimedia-mixing
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for mixing and mastering your music
+ This metapackage will install software to do mixing and mastering.
+Key: 
+ multimedia-mixing
+
+Task: multimedia-musiciantools
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for musicians
+ This metapackage will install packages useful for musicians.
+ It includes metronomes, instrument tuners and music notation software.
+Key: 
+ multimedia-musiciantools
+
+Task: multimedia-photography
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for working with digital photography
+ This metapackage will install packages for working with digital
+ photography including viewing, manipulating, editing, scanning and
+ printing of images, converting between image formats, uploading to
+ websites, and compiling and publishing collections, galleries and photo
+ albums.
+Key: 
+ multimedia-photography
+
+Task: multimedia-players
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages which makes your multimedia tools complete
+ This metapackage will install additional 'consumer' multimedia software.
+Key: 
+ multimedia-players
+
+Task: multimedia-puredata
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for working with Pure Data
+ Metapackage which installs packages, externals, libraries and plug-ins to work
+ with Pure Data (aka Pd), a graphical realtime computer music and signal
+ processing language.
+Key: 
+ multimedia-puredata
+
+Task: multimedia-recording
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for audio recording
+ This package will install packages useful for recording audio and music
+Key: 
+ multimedia-recording
+
+Task: multimedia-samplers
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Software samplers
+ This metapackage will install free software samplers.
+Key: 
+ multimedia-samplers
+
+Task: multimedia-soundsynthesis
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for sound synthesis
+ This package will install packages useful for sound synthesis.
+Key: 
+ multimedia-soundsynthesis
+
+Task: multimedia-supercollider
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Packages for working with SuperCollider
+ Metapackage which installs packages, externals, libraries and plug-ins to work
+ with SuperCollider, a real time audio synthesis programming language based on
+ SmallTalk.
+Key: 
+ multimedia-supercollider
+
+Task: multimedia-video
+Parent: debian-multimedia
+Section: debian-multimedia
+Description: Video packages
+ This metapackage will install Video software. Some are especially useful
+ to combine video and sound.
+Key: 
+ multimedia-video
+

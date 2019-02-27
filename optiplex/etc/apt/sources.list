@@ -1,0 +1,5 @@
+#deb cdrom:[Linux Mint 19.1 _Tessa_ - Release amd64 20181217]/ bionic contrib main non-free
+## Depôt MultiSystem
+deb http://liveusb.info/multisystem/depot all main
+deb http://ftp.ch.debian.org/debian buster main
+
