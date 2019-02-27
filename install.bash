@@ -10,7 +10,7 @@
 # Set main variables
 SERVER_CONF_PATH="optiplex"
 FLAVOUR_CONF_PATH="debian"
-export PATH=$PATH:$FLAVOUR_CONF_PATH
+export PATH=$PATH:`pwd`/$SERVER_CONF_PATH:`pwd`/$FLAVOUR_CONF_PATH
 
 #####
 # Source install file
