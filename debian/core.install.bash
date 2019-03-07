@@ -67,6 +67,7 @@ echo
 
 echo_start "copy configuration"
 sudo cp -r $SERVER_CONF_PATH/etc/samba/* /etc/samba/
+sudo cp -r $SERVER_CONF_PATH/var/lib/* /var/lib/
 echo_stop
 
 echo "Start all samba services"
@@ -78,5 +79,3 @@ echo
 echo_start "Mot de passe du compte $USER pour samba"
 sudo smbpasswd -a $USER
 echo_stop
-
-

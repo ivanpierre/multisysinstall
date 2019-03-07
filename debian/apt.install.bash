@@ -66,10 +66,10 @@ inst_apt() {
     sudo apt install $* -y > tmp.txt 2> tmperr.txt 
     local err=$?
     if [ $err -eq 0 ]; then
-        echo_ok "installing $1"
+        echo_ok "installing $*"
         echo_ok "$(tail -n 1 tmp.txt)"
     else
-        echo_err "inst_apt: Installation error on $1"
+        echo_err "inst_apt: Installation error on $*"
         echo_err "$(tail -n 1 tmperr.txt)"
     fi
 
