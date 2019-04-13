@@ -139,11 +139,17 @@ inst_apt grub-customizer
 . i3.bash
 
 ####
-# tasksel (debian repository)
+# Programming Languages
+. languages.bash
+
+####
+# Additional environments (Media core)
 . tasksel.bash
 
 ####
 # multisystem
 inst_apt gedit                  # To be able to edit config files
-bash install-depot-multisystem.sh 
+
+# should be called from bash, it uses windows and exits
+# bash install-depot-multisystem.sh 
 
