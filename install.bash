@@ -1,7 +1,7 @@
 #!/bin/bash
 #####
 # Linux install for kilroySoft developpement in a multi flavoured environment
-# Ivan Pierre 1/9/2019
+# Ivan Pierre 5/10/2019
 # this file is called withe arguments, not utilized for now
 # $1 linux flavour (default debian)
 # $2 server name (default optiflex)
